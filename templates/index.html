@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FitBuddy - AI Fitness Plan Generator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            width: 100%;
+            max-width: 600px;
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 25px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <img
+        src="{{ url_for('static', path='images/fitbuddy.png') }}"
+        alt="FitBuddy"
+        class="logo"
+    >
+
+    <h1>FitBuddy</h1>
+    <p style="text-align:center;">
+        AI Fitness Plan Generator using Gemini
+    </p>
+
+    <form action="/generate-workout" method="post">
+
+        <label>Name</label>
+        <input type="text" name="username" required>
+
+        <label>User ID</label>
+        <input type="text" name="user_id" required>
+
+        <label>Age</label>
+        <input type="number" name="age" min="1" required>
+
+        <label>Weight (kg)</label>
+        <input type="number" name="weight" step="0.1" min="1" required>
+
+        <label>Fitness Goal</label>
+        <select name="goal" required>
+            <option value="General Fitness">General Fitness</option>
+            <option value="Strength">Strength</option>
+            <option value="Endurance">Endurance</option>
+            <option value="Muscle Building">Muscle Building</option>
+            <option value="Weight Management">Weight Management</option>
+        </select>
+
+        <label>Workout Intensity</label>
+        <select name="intensity" required>
+            <option value="Beginner">Beginner</option>
+            <option value="Moderate">Moderate</option>
+            <option value="Advanced">Advanced</option>
+        </select>
+
+        <button type="submit">
+            Generate My Workout Plan
+        </button>
+
+    </form>
+
+    <div class="links">
+        <a href="/view-all-users">Admin / Coach View</a>
+    </div>
+
+</div>
+
+</body>
+</html>

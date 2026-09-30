@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FitBuddy Results</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .plan {
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .message {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .links {
+            text-align: center;
+            margin: 20px;
+        }
+
+        a {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+        <h1>FitBuddy Results</h1>
+
+        <p class="message">
+            {{ message }}
+        </p>
+
+        <p>
+            <strong>Name:</strong> {{ user.username }}
+        </p>
+
+        <p>
+            <strong>Goal:</strong> {{ user.goal }}
+        </p>
+
+        <p>
+            <strong>Intensity:</strong> {{ user.intensity }}
+        </p>
+    </div>
+
+
+    <div class="card">
+
+        <h2>7-Day Workout Plan</h2>
+
+        <div class="plan">
+            {{ workout_plan }}
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Nutrition & Recovery Tips</h2>
+
+        <div class="plan">
+            {{ nutrition_tip }}
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Give Feedback</h2>
+
+        <p>
+            Tell FitBuddy how the workout felt so your plan can be updated.
+        </p>
+
+        <form action="/submit-feedback" method="post">
+
+            <input
+                type="hidden"
+                name="user_id"
+                value="{{ user.user_id }}"
+            >
+
+            <textarea
+                name="feedback"
+                placeholder="Example: The workouts were too difficult..."
+                required
+            ></textarea>
+
+            <button type="submit">
+                Update My Workout Plan
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="links">
+        <a href="/">Create Another Plan</a>
+        <a href="/view-all-users">Admin / Coach View</a>
+    </div>
+
+</div>
+
+</body>
+</html>

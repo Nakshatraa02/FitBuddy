@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FitBuddy - All Users</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7f6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        .plan {
+            white-space: pre-wrap;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        a {
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>FitBuddy - Admin / Coach View</h1>
+
+    <a href="/">Back to FitBuddy</a>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Details</th>
+                <th>Original Workout Plan</th>
+                <th>Feedback</th>
+                <th>Updated Workout Plan</th>
+                <th>Nutrition Tip</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for user in users %}
+
+            <tr>
+
+                <td>
+                    {{ user.username }}
+                </td>
+
+                <td>
+                    User ID: {{ user.user_id }}<br>
+                    Age: {{ user.age }}<br>
+                    Weight: {{ user.weight }} kg<br>
+                    Goal: {{ user.goal }}<br>
+                    Intensity: {{ user.intensity }}
+                </td>
+
+                <td>
+                    <div class="plan">
+                        {{ user.original_workout_plan }}
+                    </div>
+                </td>
+
+                <td>
+                    {{ user.feedback or "No feedback yet" }}
+                </td>
+
+                <td>
+                    <div class="plan">
+                        {{ user.updated_workout_plan or "No updated plan yet" }}
+                    </div>
+                </td>
+
+                <td>
+                    <div class="plan">
+                        {{ user.nutrition_tip }}
+                    </div>
+                </td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>
